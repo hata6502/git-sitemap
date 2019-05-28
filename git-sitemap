@@ -1,0 +1,46 @@
+#/bin/bash
+
+domain=$1
+
+root=`git rev-parse --show-toplevel`
+files=`git ls-files --full-name $root | grep -E "html?$"`
+
+cat << EOS
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+EOS
+
+for file in $files
+do
+  path=$root/$file
+
+  count=`git log --oneline $path | wc -l`
+  if [ $count -eq 0 ]; then continue; fi
+  created=`git log --date=iso --pretty=format:"%ad" $path | tail -n 1`
+  elapsed=$(((`date "+%s"` - `date "+%s" -d "$created"`)/$count))
+
+  # <loc> の生成
+  loc=`echo "$domain/$file" | recode utf8..html`
+
+  # <changefreq> の生成
+  if [ $elapsed -le $((60*60)) ];then
+    changefreq="hourly"
+  elif [ $elapsed -le $((60*60*24)) ];then
+    changefreq="daily"
+  elif [ $elapsed -le $((60*60*24*7)) ];then
+    changefreq="weekly"
+  elif [ $elapsed -le $((60*60*24*28)) ];then
+    changefreq="monthly"
+  else
+    changefreq="yearly"
+  fi
+
+  # <lastmod> の生成
+  # W3C Datetime: https://www.w3.org/TR/NOTE-datetime
+  lastmod=$(date "+%Y-%m-%dT%H:%M:%S%:z" -d "`git log -1 --date=iso --pretty=format:"%ad" $path`")
+
+  # <url> の登録
+  echo "<url><loc>${loc}</loc><lastmod>${lastmod}</lastmod><changefreq>${changefreq}</changefreq></url>"
+done
+
+echo "</urlset>"
