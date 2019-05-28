@@ -3,7 +3,7 @@
 domain=$1
 
 root=`git rev-parse --show-toplevel`
-files=`git ls-files --full-name $root | grep -E "html?$"`
+files=`git ls-files --full-name $root | grep -E "html$"`
 
 cat << EOS
 <?xml version="1.0" encoding="UTF-8"?>
@@ -21,6 +21,7 @@ do
 
   # <loc> の生成
   loc=`echo "$domain/$file" | recode utf8..html`
+  loc=${loc/index.html/}
 
   # <changefreq> の生成
   if [ $elapsed -le $((60*60)) ];then
