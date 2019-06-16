@@ -1,6 +1,6 @@
 #/bin/bash
 
-domain=$1
+domain=`git config sitemap.domain`
 
 root=`git rev-parse --show-toplevel`
 files=`git ls-files --full-name $root | grep -E "html$"`
@@ -21,7 +21,7 @@ do
 
   # <loc> の生成
   loc=`echo "$domain/$file" | recode utf8..html`
-  loc=${loc/index.html/}
+  loc=${loc%index.html}
 
   # <changefreq> の生成
   if [ $elapsed -le $((60*60)) ];then
