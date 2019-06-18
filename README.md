@@ -37,9 +37,7 @@ $ cat sitemap.xml
 サイトマップを作成する git リポジトリにて、以下のコマンドでサイトのドメインを設定します。
 
 ```
-
-\$ git config sitemap.domain "https://example.com"
-
+$ git config sitemap.domain "https://example.com"
 ```
 
 ## サイトマップへの登録対象
@@ -48,4 +46,3 @@ git へのインデックスが作られている `.html` ファイルが対象�
 
 ## changefreq, lastmod の生成
 changefreq, lastmod は、git のコミット履歴をもとに自動生成されます。
-```
