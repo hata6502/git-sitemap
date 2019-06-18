@@ -6,28 +6,28 @@ git 管理による静的サイトのサイトマップを作成します。
 
 サイトマップを作成する git リポジトリにて `git sitemap` コマンドを実行します。
 
-(例) ```
+(例)
+```
 $ git add .
 $ git commit -m "記事の執筆者名を修正しました。"
 $ git sitemap > sitemap.xml
 $ cat sitemap.xml
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;urlset xmlns=&quot;http://www.sitemaps.org/schemas/sitemap/0.9&quot;&gt;
-&lt;url&gt;&lt;loc&gt;https://b-hood.site/articles/analog-orgel/&lt;/loc&gt;&lt;lastmod&gt;2019-06-18T22:06:30+09:00&lt;/lastmod&gt;&lt;changefreq&gt;daily&lt;/changefreq&gt;&lt;/url&gt;
-&lt;url&gt;&lt;loc&gt;https://b-hood.site/articles/gitwitter/&lt;/loc&gt;&lt;lastmod&gt;2019-06-18T22:06:30+09:00&lt;/lastmod&gt;&lt;changefreq&gt;weekly&lt;/changefreq&gt;&lt;/url&gt;
-&lt;url&gt;&lt;loc&gt;https://b-hood.site/articles/&lt;/loc&gt;&lt;lastmod&gt;2019-06-18T22:06:30+09:00&lt;/lastmod&gt;&lt;changefreq&gt;weekly&lt;/changefreq&gt;&lt;/url&gt;
-&lt;url&gt;&lt;loc&gt;https://b-hood.site/articles/mvhash/&lt;/loc&gt;&lt;lastmod&gt;2019-06-18T22:06:30+09:00&lt;/lastmod&gt;&lt;changefreq&gt;weekly&lt;/changefreq&gt;&lt;/url&gt;
-&lt;url&gt;&lt;loc&gt;https://b-hood.site/articles/pre_commit/&lt;/loc&gt;&lt;lastmod&gt;2019-06-18T22:06:30+09:00&lt;/lastmod&gt;&lt;changefreq&gt;weekly&lt;/changefreq&gt;&lt;/url&gt;
-&lt;url&gt;&lt;loc&gt;https://b-hood.site/articles/sitemap/&lt;/loc&gt;&lt;lastmod&gt;2019-06-18T22:06:30+09:00&lt;/lastmod&gt;&lt;changefreq&gt;weekly&lt;/changefreq&gt;&lt;/url&gt;
-&lt;url&gt;&lt;loc&gt;https://b-hood.site/articles/staticgen/&lt;/loc&gt;&lt;lastmod&gt;2019-06-18T22:06:30+09:00&lt;/lastmod&gt;&lt;changefreq&gt;weekly&lt;/changefreq&gt;&lt;/url&gt;
-&lt;url&gt;&lt;loc&gt;https://b-hood.site/articles/sticky-stack/&lt;/loc&gt;&lt;lastmod&gt;2019-06-18T22:06:30+09:00&lt;/lastmod&gt;&lt;changefreq&gt;weekly&lt;/changefreq&gt;&lt;/url&gt;
-&lt;url&gt;&lt;loc&gt;https://b-hood.site/articles/table-of-contents/&lt;/loc&gt;&lt;lastmod&gt;2019-06-18T22:06:30+09:00&lt;/lastmod&gt;&lt;changefreq&gt;weekly&lt;/changefreq&gt;&lt;/url&gt;
-&lt;url&gt;&lt;loc&gt;https://b-hood.site/articles/trimrate/&lt;/loc&gt;&lt;lastmod&gt;2019-06-18T22:06:30+09:00&lt;/lastmod&gt;&lt;changefreq&gt;weekly&lt;/changefreq&gt;&lt;/url&gt;
-&lt;url&gt;&lt;loc&gt;https://b-hood.site/articles/webp/&lt;/loc&gt;&lt;lastmod&gt;2019-06-18T22:06:30+09:00&lt;/lastmod&gt;&lt;changefreq&gt;weekly&lt;/changefreq&gt;&lt;/url&gt;
-&lt;url&gt;&lt;loc&gt;https://b-hood.site/&lt;/loc&gt;&lt;lastmod&gt;2019-06-18T22:06:30+09:00&lt;/lastmod&gt;&lt;changefreq&gt;weekly&lt;/changefreq&gt;&lt;/url&gt;
-&lt;url&gt;&lt;loc&gt;https://b-hood.site/privacy/&lt;/loc&gt;&lt;lastmod&gt;2019-06-18T00:16:13+09:00&lt;/lastmod&gt;&lt;changefreq&gt;monthly&lt;/changefreq&gt;&lt;/url&gt;
-&lt;/urlset&gt;
-
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://b-hood.site/articles/analog-orgel/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>daily</changefreq></url>
+<url><loc>https://b-hood.site/articles/gitwitter/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>https://b-hood.site/articles/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>https://b-hood.site/articles/mvhash/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>https://b-hood.site/articles/pre_commit/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>https://b-hood.site/articles/sitemap/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>https://b-hood.site/articles/staticgen/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>https://b-hood.site/articles/sticky-stack/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>https://b-hood.site/articles/table-of-contents/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>https://b-hood.site/articles/trimrate/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>https://b-hood.site/articles/webp/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>https://b-hood.site/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>https://b-hood.site/privacy/</loc><lastmod>2019-06-18T00:16:13+09:00</lastmod><changefreq>monthly</changefreq></url>
+</urlset>
 ```
 
 ## インストール
