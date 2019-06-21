@@ -13,7 +13,12 @@ do
   path=$root/$file
 
   # デフォルト設定
-  prefix="https://example.com"
+  prefix="https://example.com"  # URL 前置詞
+  function difftest () {  # ファイルの更新判定
+    # $1 コミットのハッシュ
+    # $2 ファイルパス
+    return 0; # 無条件で「更新」判定
+  }
 
   # 設定ファイルのパスを生成
   rcdirs=()
@@ -30,8 +35,25 @@ do
     fi
   done
 
-  count=`git log --oneline $path | wc -l`
-  if [ $count -eq 0 ]; then continue; fi
+  # 更新回数の判定
+  count=0
+  hashes=(`git log --reverse --pretty=%H ${path}`)
+  i=0
+  for hash in ${hashes[@]}; do
+    if [ $i -eq 0 ]; then
+      # 最初のコミットは無条件で更新判定
+      count=$(($count + 1))
+    else
+      # 更新判定
+      if difftest ${hash} ${path}; then
+        count=$(($count + 1))
+      fi
+    fi
+    i=$(($i + 1))
+  done
+  if [ ${count} -eq 0 ]; then continue; fi
+
+  # 作成日時と更新間隔の計算
   created=`git log --date=iso --pretty=format:"%ad" $path | tail -n 1`
   elapsed=$(((`date "+%s"` - `date "+%s" -d "$created"`)/$count))
 

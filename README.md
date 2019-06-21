@@ -51,6 +51,21 @@ prefix="https://example.com"  # URL 前置詞
 git へのインデックスが作られている `.html` ファイルが対象となります。
 `.gitignore` によって無視されたページは登録されません。
 
-## changefreq, lastmod の生成
+## changefreq の判定
 
-changefreq, lastmod は、git のコミット履歴をもとに自動生成されます。
+changefreq は、`.html` ファイルのコミット履歴をもとに自動生成されます。
+`.html` ファイルの更新判定を行い、更新回数と作成日時から changefreq を判定します。
+更新の判定プログラムは、`.git-sitemaprc` に `difftest` 関数を記述することで設定できます。
+デフォルトでは必ず「更新」と判定されます。
+
+(例) 10 行以上の変更で「更新」と判定する bash スクリプト
+
+```
+function difftest () {
+  # $1 コミットのハッシュ
+  # $2 ファイルパス
+  local diff=`git diff -U0 $1^..$1 $2 | tail -n +5 | grep -E "^(\+|-)"`
+  local count=`echo "${diff}" | wc -l`
+  return `[ ${count} -ge 10 ]`
+}
+```
