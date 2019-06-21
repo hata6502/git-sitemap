@@ -1,4 +1,4 @@
-[![Release](https://img.shields.io/github/release/blue-hood/synth.svg)](https://github.com/blue-hood/git-sitemap/releases/latest)
+[![Release](https://img.shields.io/github/release/blue-hood/git-sitemap.svg)](https://github.com/blue-hood/git-sitemap/releases/latest)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 # git-sitemap
