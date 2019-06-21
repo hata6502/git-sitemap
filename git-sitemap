@@ -24,7 +24,7 @@ do
   rcdirs=()
   rcdir=`dirname ${path}`
   while [ ${#rcdir} -ge ${#root} ];do
-    rcdirs=(${rcdir}/.git-sitemaprc "${rcdirs[@]}")
+    rcdirs=(${rcdir}/.git-sitemaprc.sh "${rcdirs[@]}")
     rcdir=`cd ${rcdir}/.. && pwd`
   done
 

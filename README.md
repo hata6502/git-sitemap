@@ -38,9 +38,9 @@ $ cat sitemap.xml
 
 ## 設定
 
-`.git-sitemaprc` を設置して設定をします。
+`.git-sitemaprc.sh` を設置して設定をします。
 リポジトリのルートディレクトリから探索し、各 `.html` ファイルのパスまで辿りながら
-`.git-sitemaprc` に記述された設定をオーバーライドしていきます。
+`.git-sitemaprc.sh` に記述された設定をオーバーライドしていきます。
 
 ```
 prefix="https://example.com"  # URL 前置詞
@@ -55,7 +55,7 @@ git へのインデックスが作られている `.html` ファイルが対象�
 
 changefreq は、`.html` ファイルのコミット履歴をもとに自動生成されます。
 `.html` ファイルの更新判定を行い、更新回数と作成日時から changefreq を判定します。
-更新の判定プログラムは、`.git-sitemaprc` に `difftest` 関数を記述することで設定できます。
+更新の判定プログラムは、`.git-sitemaprc.sh` に `difftest` 関数を記述することで設定できます。
 デフォルトでは必ず「更新」と判定されます。
 
 (例. 1) 10 行以上の変更で「更新」と判定する bash スクリプト
