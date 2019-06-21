@@ -16,19 +16,26 @@ $ git sitemap > sitemap.xml
 $ cat sitemap.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://b-hood.site/articles/analog-orgel/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>daily</changefreq></url>
-<url><loc>https://b-hood.site/articles/gitwitter/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
-<url><loc>https://b-hood.site/articles/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
-<url><loc>https://b-hood.site/articles/mvhash/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
-<url><loc>https://b-hood.site/articles/pre_commit/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
-<url><loc>https://b-hood.site/articles/sitemap/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
-<url><loc>https://b-hood.site/articles/staticgen/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
-<url><loc>https://b-hood.site/articles/sticky-stack/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
-<url><loc>https://b-hood.site/articles/table-of-contents/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
-<url><loc>https://b-hood.site/articles/trimrate/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
-<url><loc>https://b-hood.site/articles/webp/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
-<url><loc>https://b-hood.site/</loc><lastmod>2019-06-18T22:06:30+09:00</lastmod><changefreq>weekly</changefreq></url>
-<url><loc>https://b-hood.site/privacy/</loc><lastmod>2019-06-18T00:16:13+09:00</lastmod><changefreq>monthly</changefreq></url>
+  <url>
+    <loc>https://b-hood.site/articles/analog-orgel/</loc>
+    <lastmod>2019-06-21T17:32:08+09:00</lastmod>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://b-hood.site/articles/</loc>
+    <lastmod>2019-06-21T17:32:08+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://b-hood.site/</loc>
+    <lastmod>2019-06-21T17:32:08+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://b-hood.site/privacy/</loc>
+    <lastmod>2019-06-21T17:32:08+09:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
 </urlset>
 ```
 

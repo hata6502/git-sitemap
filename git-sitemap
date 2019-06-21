@@ -79,7 +79,11 @@ do
   lastmod=$(date "+%Y-%m-%dT%H:%M:%S%:z" -d "`git log -1 --date=iso --pretty=format:"%ad" $path`")
 
   # <url> の登録
-  echo "<url><loc>${loc}</loc><lastmod>${lastmod}</lastmod><changefreq>${changefreq}</changefreq></url>"
+  echo "  <url>"
+  echo "    <loc>${loc}</loc>"
+  echo "    <lastmod>${lastmod}</lastmod>"
+  echo "    <changefreq>${changefreq}</changefreq>"
+  echo "  </url>"
 done
 
 echo "</urlset>"
