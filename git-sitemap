@@ -1,9 +1,7 @@
-#/bin/bash
-
-domain=`git config sitemap.domain`
+#!/bin/bash
 
 root=`git rev-parse --show-toplevel`
-files=`git ls-files --full-name $root | grep -E "html$"`
+files=`git ls-files --full-name | grep -E "html$"`
 
 cat << EOS
 <?xml version="1.0" encoding="UTF-8"?>
@@ -14,13 +12,31 @@ for file in $files
 do
   path=$root/$file
 
+  # デフォルト設定
+  prefix="https://example.com"
+
+  # 設定ファイルのパスを生成
+  rcdirs=()
+  rcdir=`dirname ${path}`
+  while [ ${#rcdir} -ge ${#root} ];do
+    rcdirs=(${rcdir}/.git-sitemaprc "${rcdirs[@]}")
+    rcdir=`cd ${rcdir}/.. && pwd`
+  done
+
+  # 設定読み込み
+  for rcpath in ${rcdirs[@]}; do
+    if [ -f ${rcpath} ]; then
+      source ${rcpath}
+    fi
+  done
+
   count=`git log --oneline $path | wc -l`
   if [ $count -eq 0 ]; then continue; fi
   created=`git log --date=iso --pretty=format:"%ad" $path | tail -n 1`
   elapsed=$(((`date "+%s"` - `date "+%s" -d "$created"`)/$count))
 
   # <loc> の生成
-  loc=`echo "$domain/$file" | recode utf8..html`
+  loc=`echo "${prefix}/${file}" | recode utf8..html`
   loc=${loc%index.html}
 
   # <changefreq> の生成

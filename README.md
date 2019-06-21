@@ -5,8 +5,10 @@ git 管理による静的サイトのサイトマップを作成します。
 ## 使い方
 
 サイトマップを作成する git リポジトリにて `git sitemap` コマンドを実行します。
+コマンドを実行したディレクトリ配下の `.html` ファイルを探索します。
 
 (例)
+
 ```
 $ git add .
 $ git commit -m "記事の執筆者名を修正しました。"
@@ -31,18 +33,24 @@ $ cat sitemap.xml
 ```
 
 ## インストール
+
 `/usr/local/bin` などに `git-sitemap` を配置し、実行権限を付与します。
 
 ## 設定
-サイトマップを作成する git リポジトリにて、以下のコマンドでサイトのドメインを設定します。
+
+`.git-sitemaprc` を設置して設定をします。
+リポジトリのルートディレクトリから探索し、各 `.html` ファイルのパスまで辿りながら
+`.git-sitemaprc` に記述された設定をオーバーライドしていきます。
 
 ```
-$ git config sitemap.domain "https://example.com"
+prefix="https://example.com"  # URL 前置詞
 ```
 
 ## サイトマップへの登録対象
+
 git へのインデックスが作られている `.html` ファイルが対象となります。
-なお、`.gitignore` によって無視されたページは登録されません。
+`.gitignore` によって無視されたページは登録されません。
 
 ## changefreq, lastmod の生成
+
 changefreq, lastmod は、git のコミット履歴をもとに自動生成されます。
