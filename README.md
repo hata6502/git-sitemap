@@ -58,14 +58,29 @@ changefreq は、`.html` ファイルのコミット履歴をもとに自動生�
 更新の判定プログラムは、`.git-sitemaprc` に `difftest` 関数を記述することで設定できます。
 デフォルトでは必ず「更新」と判定されます。
 
-(例) 10 行以上の変更で「更新」と判定する bash スクリプト
+(例. 1) 10 行以上の変更で「更新」と判定する bash スクリプト
 
 ```
 function difftest () {
   # $1 コミットのハッシュ
   # $2 ファイルパス
+
   local diff=`git diff -U0 $1^..$1 $2 | tail -n +5 | grep -E "^(\+|-)"`
   local count=`echo "${diff}" | wc -l`
   return `[ ${count} -ge 10 ]`
+}
+```
+
+(例. 2) css ファイルのハッシュ値変化を無視する bash スクリプト
+
+```
+function difftest () {
+  # $1 コミットのハッシュ
+  # $2 ファイルパス
+
+  local diff=`git diff -U0 $1^..$1 $2 | tail -n +5 | grep -E "^(\+|-)"`
+  # /css/app.css?id=99a477ea...
+  diff=`echo "${diff}" | grep -v "\/css\/app.css"`
+  return `[ -n "${diff}" ]`
 }
 ```
