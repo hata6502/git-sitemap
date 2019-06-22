@@ -1,0 +1,9 @@
+script:
+  - git clone https://github.com/Hato6502/example-static-site
+  - cd example-static-site/
+  - ../bin/git-sitemap | tee sitemap.xml
+  - cd ../
+  - diff -u test/correct.xml example-static-site/sitemap.xml
+os:
+  - linux
+  - osx

@@ -1,20 +1,21 @@
+[![Build Status](https://travis-ci.org/blue-hood/git-sitemap.svg?branch=master)](https://travis-ci.org/blue-hood/git-sitemap)
 [![Release](https://img.shields.io/github/release/blue-hood/git-sitemap.svg)](https://github.com/blue-hood/git-sitemap/releases/latest)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 # git-sitemap
 
-git 管理による静的サイトのサイトマップを作成します。
+Generate sitemap.xml with &lt;changefreq&gt; automatically🐥 based on the git history.
 
-## 使い方
+## Usage
 
-サイトマップを作成する git リポジトリにて `git sitemap` コマンドを実行します。
-コマンドを実行したディレクトリ配下の `.html` ファイルを探索します。
+Just run `git sitemap` on the git repository.
+git-sitemap collects files under current directory.
 
-(例)
+(ex.)
 
 ```
 $ git add .
-$ git commit -m "記事の執筆者名を修正しました。"
+$ git commit -m "Changed author name. "
 $ git sitemap > sitemap.xml
 $ cat sitemap.xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -42,40 +43,67 @@ $ cat sitemap.xml
 </urlset>
 ```
 
-## インストール
+## Supports
 
-`/usr/local/bin` などに `git-sitemap` を配置し、実行権限を付与します。
+- Linux
+- mac OS
 
-## 設定
-
-`.git-sitemaprc.sh` を設置して設定をします。
-リポジトリのルートディレクトリから探索し、各 `.html` ファイルのパスまで辿りながら
-`.git-sitemaprc.sh` に記述された設定をオーバーライドしていきます。
-
-(例)
+note: git-sitemap uses `date` command of GNU version, so please install GNU coreutils in your mac OS.
 
 ```
-prefix="https://example.com"  # URL 前置詞
+$ brew install coreutils
 ```
 
-## サイトマップへの登録対象
+## Install
 
-git へのインデックスが作られている `.html` ファイルが対象となります。
-`.gitignore` によって無視されたページは登録されません。
+Just place /bin/git-sitemap on executable directory (e.g. /usr/local/bin).
 
-## changefreq の判定
+## Settings
 
-changefreq は、`.html` ファイルのコミット履歴をもとに自動生成されます。
-`.html` ファイルの更新判定を行い、更新回数と作成日時から changefreq を判定します。
-更新の判定プログラムは、`.git-sitemaprc.sh` に `difftest` 関数を記述することで設定できます。
-デフォルトでは必ず「更新」と判定されます。
+To customize git-sitemap, please place .git-sitemaprc.sh in the repository.
+git-sitemap collects .git-sitemaprc.sh from the root directory of repository to each file's directory, and override settings.
 
-(例. 1) 10 行以上の変更で「更新」と判定する bash スクリプト
+### Domain
+
+The domain is set to https://example.com by default.
+This can be changed with PREFIX option.
+
+(ex. )
+
+```
+PREFIX="https://b-hood.site"
+```
+
+### Target files
+
+git-sitemap collects all files indexed by git by default, don't collect files listed in .gitignore.
+By setting loc option, it can collect only html files.
+
+```
+function loc() {
+  cat - | grep -E "\.html$"
+}
+```
+
+And, it also can remove index.html with the following setting.
+
+```
+function loc() {
+  cat - | grep -E "\.html$" | sed "s/index\.html$//"
+}
+```
+
+### Update judgement
+
+&lt;changefreq&gt; is judged based on the commit history of each file.
+To count updated times correctly, please set difftest option.
+
+(ex. 1) Judge changing files more than 10 lines as update.
 
 ```
 function difftest () {
-  # $1 コミットのハッシュ
-  # $2 ファイルパス
+  # $1 the hash of commit
+  # $2 file path
 
   local diff=`git diff -U0 $1^..$1 $2 | tail -n +5 | grep -E "^(\+|-)"`
   local count=`echo "${diff}" | wc -l`
@@ -83,26 +111,81 @@ function difftest () {
 }
 ```
 
-(例. 2) css ファイルのハッシュ値変化を無視する bash スクリプト
+(ex. 2) Ignore the changes of css file's hash.
 
 ```
 function difftest () {
-  # $1 コミットのハッシュ
-  # $2 ファイルパス
+  # $1 the hash of commit
+  # $2 file path
 
   local diff=`git diff -U0 $1^..$1 -- $2 | tail -n +5 | grep -E "^(\+|-)"`
   # /css/app.css?id=99a477ea...
-  diff=`echo "${diff}" | grep -v "\/css\/app.css"`
+  diff=`echo "${diff}" | grep -v "\/css\/app\.css"`
   return `[ -n "${diff}" ]`
 }
 ```
 
-また、`.git-sitemaprc.sh` に `since` を記述することで、取得するコミット履歴の
-開始日付を指定することができます。
-これは `git log` の `--since` オプションに該当します。
+### Target commits
 
-(例) 過去１ヶ月分のコミット履歴を対象にする
+By setting SINCE option, it can restrict commits used to judge &lt;changefreq&gt;.
+This is equals to `git log --since` option.
+
+(ex. )
 
 ```
-since="1 month ago"
+SINCE="1 month ago"
 ```
+
+### Reference time
+
+To generate sitemap at the specified time, please set CURRENT_TIME option.
+
+(ex. )
+
+```
+CURRENT_TIME="2019-01-01"
+```
+
+### &lt;priority&gt; setting
+
+It doesn't output &lt;priority&gt; by default.
+This can be set as priority option.
+
+(ex. )
+
+```
+function priority() {
+  # $1 file path
+  echo "0.5"
+}
+```
+
+### &lt;lastmod&gt; &lt;changefreq&gt; filter
+
+&lt;lastmod&gt; and &lt;changefreq&gt; are written automatically by default,
+they can also be set specified value by lastmod and changefreq option.
+Not to output these values, please define empty function.
+
+(ex. ) Don't output &lt;lastmod&gt;, and set &lt;changefreq&gt; to always forcibly.
+
+```
+function lastmod() {
+  # $1 file path
+}
+function changefreq() {
+  # $1 file path
+  echo "always"
+}
+```
+
+## Advanced
+
+### Run on Travis CI
+
+It is convenient to generate sitemap on Travis CI.
+See [git-sitemap-travisci](https://github.com/Hato6502/git-sitemap-travisci) for details.
+
+### Run with husky
+
+It is also convenient to generate sitemap with husky.
+See [git-sitemap-husky](https://github.com/Hato6502/git-sitemap-husky) for details.

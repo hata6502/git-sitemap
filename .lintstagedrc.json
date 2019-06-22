@@ -1,0 +1,7 @@
+{
+  "linters": {
+    "*git-sitemap": ["shfmt -i 2 -ci -bn -s -w", "shellcheck", "git add"],
+    "*.json": ["prettier --write", "git add"],
+    "*.md": ["prettier --write", "git add"]
+  }
+}
