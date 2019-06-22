@@ -1,3 +1,6 @@
+[![Release](https://img.shields.io/github/release/blue-hood/git-sitemap.svg)](https://github.com/blue-hood/git-sitemap/releases/latest)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
+
 # git-sitemap
 
 git 管理による静的サイトのサイトマップを作成します。
