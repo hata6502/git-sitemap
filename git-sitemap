@@ -14,6 +14,7 @@ do
 
   # デフォルト設定
   prefix="https://example.com"  # URL 前置詞
+  since="1970-01-01"  # コミット履歴の開始日付
   function difftest () {  # ファイルの更新判定
     # $1 コミットのハッシュ
     # $2 ファイルパス
@@ -37,7 +38,7 @@ do
 
   # 更新回数の判定
   count=0
-  hashes=(`git log --reverse --pretty=%H ${path}`)
+  hashes=(`git log --reverse --pretty=%H --since "${since}" ${path}`)
   i=0
   for hash in ${hashes[@]}; do
     if [ $i -eq 0 ]; then
@@ -54,7 +55,7 @@ do
   if [ ${count} -eq 0 ]; then continue; fi
 
   # 作成日時と更新間隔の計算
-  created=`git log --date=iso --pretty=format:"%ad" $path | tail -n 1`
+  created=`git log --date=iso --pretty=format:"%ad" --since "${since}" $path | tail -n 1`
   elapsed=$(((`date "+%s"` - `date "+%s" -d "$created"`)/$count))
 
   # <loc> の生成

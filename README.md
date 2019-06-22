@@ -49,6 +49,8 @@ $ cat sitemap.xml
 リポジトリのルートディレクトリから探索し、各 `.html` ファイルのパスまで辿りながら
 `.git-sitemaprc.sh` に記述された設定をオーバーライドしていきます。
 
+(例)
+
 ```
 prefix="https://example.com"  # URL 前置詞
 ```
@@ -85,9 +87,19 @@ function difftest () {
   # $1 コミットのハッシュ
   # $2 ファイルパス
 
-  local diff=`git diff -U0 $1^..$1 $2 | tail -n +5 | grep -E "^(\+|-)"`
+  local diff=`git diff -U0 $1^..$1 -- $2 | tail -n +5 | grep -E "^(\+|-)"`
   # /css/app.css?id=99a477ea...
   diff=`echo "${diff}" | grep -v "\/css\/app.css"`
   return `[ -n "${diff}" ]`
 }
+```
+
+また、`.git-sitemaprc.sh` に `since` を記述することで、取得するコミット履歴の
+開始日付を指定することができます。
+これは `git log` の `--since` オプションに該当します。
+
+(例) 過去１ヶ月分のコミット履歴を対象にする
+
+```
+since="1 month ago"
 ```
