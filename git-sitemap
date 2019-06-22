@@ -36,12 +36,20 @@ do
     fi
   done
 
+  # <loc> の生成
+  loc=`echo "${prefix}/${file}" | recode utf8..html`
+  loc=${loc%index.html}
+
+  # <lastmod> の生成
+  # W3C Datetime: https://www.w3.org/TR/NOTE-datetime
+  lastmod=$(date "+%Y-%m-%dT%H:%M:%S%:z" -d "`git log -1 --date=iso --pretty=format:"%ad" $path`")
+
   # 更新回数の判定
   count=0
+  first=`git log --date=iso --pretty=%H $path | tail -n 1`
   hashes=(`git log --reverse --pretty=%H --since "${since}" ${path}`)
-  i=0
   for hash in ${hashes[@]}; do
-    if [ $i -eq 0 ]; then
+    if [ ${hash} == ${first} ]; then
       # 最初のコミットは無条件で更新判定
       count=$(($count + 1))
     else
@@ -50,34 +58,27 @@ do
         count=$(($count + 1))
       fi
     fi
-    i=$(($i + 1))
   done
-  if [ ${count} -eq 0 ]; then continue; fi
-
-  # 作成日時と更新間隔の計算
-  created=`git log --date=iso --pretty=format:"%ad" --since "${since}" $path | tail -n 1`
-  elapsed=$(((`date "+%s"` - `date "+%s" -d "$created"`)/$count))
-
-  # <loc> の生成
-  loc=`echo "${prefix}/${file}" | recode utf8..html`
-  loc=${loc%index.html}
 
   # <changefreq> の生成
-  if [ $elapsed -le $((60*60)) ];then
-    changefreq="hourly"
-  elif [ $elapsed -le $((60*60*24)) ];then
-    changefreq="daily"
-  elif [ $elapsed -le $((60*60*24*7)) ];then
-    changefreq="weekly"
-  elif [ $elapsed -le $((60*60*24*28)) ];then
-    changefreq="monthly"
-  else
+  if [ ${count} -eq 0 ]; then
     changefreq="yearly"
-  fi
+  else
+    created=`git log --date=iso --pretty=format:"%ad" --since "${since}" $path | tail -n 1`
+    elapsed=$(((`date "+%s"` - `date "+%s" -d "$created"`)/$count))
 
-  # <lastmod> の生成
-  # W3C Datetime: https://www.w3.org/TR/NOTE-datetime
-  lastmod=$(date "+%Y-%m-%dT%H:%M:%S%:z" -d "`git log -1 --date=iso --pretty=format:"%ad" $path`")
+    if [ $elapsed -le $((60*60)) ];then
+      changefreq="hourly"
+    elif [ $elapsed -le $((60*60*24)) ];then
+      changefreq="daily"
+    elif [ $elapsed -le $((60*60*24*7)) ];then
+      changefreq="weekly"
+    elif [ $elapsed -le $((60*60*24*28)) ];then
+      changefreq="monthly"
+    else
+      changefreq="yearly"
+    fi
+  fi
 
   # <url> の登録
   echo "  <url>"
