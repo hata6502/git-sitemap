@@ -48,7 +48,7 @@ for file in $files; do
   first=$(git log --date=iso --pretty=%H $path | tail -n 1)
   hashes=($(git log --reverse --pretty=%H --since "${since}" ${path}))
   for hash in ${hashes[@]}; do
-    if [ ${hash} == ${first} ]; then
+    if [ "${hash}" == "${first}" ]; then
       # 最初のコミットは無条件で更新判定
       count=$((count + 1))
     else
