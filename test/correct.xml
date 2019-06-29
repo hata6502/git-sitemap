@@ -1,33 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://example.com/articles/</loc>
-    <lastmod>2018-12-31T15:00:00+00:00</lastmod>
+    <loc>https://b-hood.site/articles/analog-orgel/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://example.com/articles/table-of-contents/</loc>
-    <lastmod>2018-12-31T15:00:00+00:00</lastmod>
+    <loc>https://b-hood.site/articles/gitwitter/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://example.com/articles/trimrate/</loc>
-    <lastmod>2018-12-31T15:00:00+00:00</lastmod>
+    <loc>https://b-hood.site/articles/husky/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://example.com/articles/webp/</loc>
-    <lastmod>2018-12-31T15:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://b-hood.site/articles/</loc>
+    <lastmod>2019-06-29T00:00:00+00:00</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://example.com/</loc>
-    <lastmod>2019-06-23T15:50:57+00:00</lastmod>
+    <loc>https://b-hood.site/articles/mvhash/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://example.com/privacy/</loc>
-    <lastmod>2018-12-31T15:00:00+00:00</lastmod>
+    <loc>https://b-hood.site/articles/pre_commit/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://b-hood.site/articles/sitemap/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://b-hood.site/articles/staticgen/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://b-hood.site/articles/sticky-stack/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://b-hood.site/articles/table-of-contents/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://b-hood.site/articles/trimrate/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://b-hood.site/articles/webp/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://b-hood.site/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://b-hood.site/privacy/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>
