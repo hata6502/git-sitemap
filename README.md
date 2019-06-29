@@ -166,11 +166,12 @@ function priority() {
 they can also be set specified value by lastmod and changefreq option.
 Not to output these values, please define empty function.
 
-(ex. ) Don't output &lt;lastmod&gt;, and set &lt;changefreq&gt; to always forcibly.
+(ex. ) Set &lt;lastmod&gt; to now, and &lt;changefreq&gt; to always forcibly.
 
 ```
 function lastmod() {
   # $1 file path
+  date --iso-8601 | w3cdatetime
 }
 function changefreq() {
   # $1 file path
