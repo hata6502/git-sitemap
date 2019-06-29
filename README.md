@@ -14,31 +14,54 @@ git-sitemap collects files under current directory.
 (ex.)
 
 ```
-$ git add .
-$ git commit -m "Changed author name. "
-$ git sitemap > sitemap.xml
-$ cat sitemap.xml
+$ git clone https://github.com/Hato6502/example-static-site
+Cloning into 'example-static-site'...
+remote: Enumerating objects: 259, done.
+remote: Counting objects: 100% (259/259), done.
+remote: Compressing objects: 100% (61/61), done.
+remote: Total 259 (delta 111), reused 258 (delta 110), pack-reused 0
+Receiving objects: 100% (259/259), 92.37 KiB | 286.00 KiB/s, done.
+Resolving deltas: 100% (111/111), done.
+$ cd example-static-site/
+$ git sitemap | tee sitemap.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://b-hood.site/articles/analog-orgel/</loc>
-    <lastmod>2019-06-21T17:32:08+09:00</lastmod>
-    <changefreq>daily</changefreq>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://b-hood.site/articles/gitwitter/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://b-hood.site/articles/husky/</loc>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://b-hood.site/articles/</loc>
-    <lastmod>2019-06-21T17:32:08+09:00</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2019-06-29T00:00:00+00:00</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.5</priority>
   </url>
+  ...
   <url>
     <loc>https://b-hood.site/</loc>
-    <lastmod>2019-06-21T17:32:08+09:00</lastmod>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://b-hood.site/privacy/</loc>
-    <lastmod>2019-06-21T17:32:08+09:00</lastmod>
+    <lastmod>2019-06-21T08:32:08+00:00</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>
 ```
